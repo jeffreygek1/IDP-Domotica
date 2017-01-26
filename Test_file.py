@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 import time
 import os
 
-RED = 18
-GREEN = 21
+RED = 17
+GREEN = 18
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
