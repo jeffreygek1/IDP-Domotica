@@ -2,9 +2,13 @@ import RPi.GPIO as GPIO
 import time
 import os
 
+RED = 17
+GREEN = 21
+
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.OUT)
+GPIO.setup(RED, GPIO.OUT)
+GPIO.setup(GREEN, GPIO.OUT)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -23,18 +27,16 @@ def knop_LED():
 
 
 def LED():
-    GPIO.output(17, True)
+    GPIO.output(GREEN, False)
+    GPIO.output(RED, True)
     os.system("sudo service motion stop")
     time.sleep(0.5)
-    GPIO.output(17, False)
     return
 
 def camera_aan():
-    GPIO.output(17, True)
+    GPIO.output(RED, False)
     os.system("sudo service motion start")
     os.system("sudo motion")
-    time.sleep(5)
-    GPIO.output(17, False)
     return
 
 os.system("sudo service motion start")
