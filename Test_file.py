@@ -25,7 +25,7 @@ def knop_LED():
 def LED():
     GPIO.output(17, True)
     os.system("sudo service motion stop")
-    time.sleep(5)
+    time.sleep(0.5)
     GPIO.output(17, False)
     return
 
