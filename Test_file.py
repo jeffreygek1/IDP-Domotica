@@ -19,7 +19,7 @@ def knop_LED():
             print("knop in gedrukt...")
             time.sleep(0.3)
             print("Lamp gaat aan...")
-            LED()
+            camera_aan()
 
 
 def LED():
