@@ -13,7 +13,6 @@ def knop_LED():
             time.sleep(0.3)
             print("Lamp gaat aan...")
             LED()
-        return
 
 def LED():
     GPIO.output(17, True)
