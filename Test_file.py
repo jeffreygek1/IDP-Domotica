@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import os
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -15,11 +16,15 @@ def knop_LED():
             LED()
 
 def LED():
+    os.system("sudo service motion stop")
     GPIO.output(17, True)
     time.sleep(5)
     GPIO.output(17, False)
     return
 
+
+os.system("sudo service motion start")
+os.system("sudo motion")
 knop_LED()
 
 
