@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import os
 
-RED = 17
+RED = 18
 GREEN = 21
 
 GPIO.setwarnings(False)
