@@ -21,5 +21,6 @@ def LED():
     GPIO.output(17, False)
     return
 
+knop_LED()
 
 
