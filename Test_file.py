@@ -19,6 +19,7 @@ def knop_LED():
             time.sleep(0.3)
             print("Lamp gaat aan...")
             LED()
+
         if GPIO.input(23) == True:
             print("knop in gedrukt...")
             time.sleep(0.3)
@@ -30,7 +31,20 @@ def LED():
     GPIO.output(GREEN, False)
     GPIO.output(RED, True)
     os.system("sudo service motion stop")
-    time.sleep(0.5)
+    GPIO.output(RED, False)
+    GPIO.output(RED, True)
+    time.sleep(0.1)
+    GPIO.output(RED, False)
+    GPIO.output(RED, True)
+    time.sleep(0.1)
+    GPIO.output(RED, False)
+    GPIO.output(RED, True)
+    time.sleep(0.1)
+    GPIO.output(RED, False)
+    GPIO.output(RED, True)
+    time.sleep(0.1)
+    GPIO.output(RED, False)
+    GPIO.output(RED, True)
     return
 
 def camera_aan():
