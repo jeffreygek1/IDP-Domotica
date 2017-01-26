@@ -35,6 +35,7 @@ def LED():
 
 def camera_aan():
     GPIO.output(RED, False)
+    GPIO.output(GREEN, True)
     os.system("sudo service motion start")
     os.system("sudo motion")
     return
