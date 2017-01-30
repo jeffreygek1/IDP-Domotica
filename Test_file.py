@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import os
+import mysql.connecter
 
 RED = 17
 GREEN = 18
@@ -11,6 +12,9 @@ GPIO.setup(RED, GPIO.OUT)
 GPIO.setup(GREEN, GPIO.OUT)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+cnx = mysql.connector.connect(user='root',
+                              password='raspberry', host='idp-projectserver.ddns.net', database='domoDB')
 
 def knop_LED():
     while True:
@@ -50,3 +54,4 @@ os.system("sudo service motion start")
 os.system("sudo motion")
 GPIO.output(GREEN, True)
 knop_LED()
+cnx.close()
