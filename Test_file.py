@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import os
-import mysqldb
+import MySQLdb
 
 RED = 17
 GREEN = 18
@@ -13,7 +13,7 @@ GPIO.setup(GREEN, GPIO.OUT)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-db = mysqldb.connect(host='idp-projectserver.ddns.net', user='raspberry1',
+db = MySQLdb.connect(host='idp-projectserver.ddns.net', user='raspberry',
                               password='raspberry', database='domoDB')
 
 def knop_LED():
