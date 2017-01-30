@@ -13,7 +13,7 @@ GPIO.setup(GREEN, GPIO.OUT)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-db = MySQLdb.connect(host='idp-projectserver.ddns.net', user='raspberry',
+db = MySQLdb.connect(host='idp-projectserver.ddns.net', user='raspberry1',
                               passwd='raspberry', db='domoDB')
 
 def knop_LED():
