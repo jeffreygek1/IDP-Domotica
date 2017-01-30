@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import os
-import mysql.connecter
+import mysql.connector
 
 RED = 17
 GREEN = 18
