@@ -48,6 +48,5 @@ def camera_aan():
 
 os.system("sudo service motion start")
 os.system("sudo motion")
+GPIO.output(GREEN, True)
 knop_LED()
-
-
