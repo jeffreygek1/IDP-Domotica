@@ -25,6 +25,7 @@ def knop_LED():
             time.sleep(0.3)
             print("Lamp gaat aan...")
             camera_aan()
+        time.sleep(0.1)
 
 
 def LED():
