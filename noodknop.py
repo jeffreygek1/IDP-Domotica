@@ -10,6 +10,6 @@ def noodknop():
     while True:
         if GPIO.input(21) == True:
             print("noodknop ingedrukt!")
-        time.sleep(0.1)
+        time.sleep(0.3)
 
 noodknop()
