@@ -44,4 +44,19 @@ def database_noodknop():
         # Rollback in case there is any error
         db.rollback()
     return
+
+def database_startup():
+    cursor = db.cursor()
+    sql = "UPDATE Monitor SET  geeftnoodoproep = 0 WHERE rpiID = 1 and woningnr = 1"
+    try:
+        # Execute the SQL command
+        cursor.execute(sql)
+        # Commit your changes in the database
+        db.commit()
+    except:
+        # Rollback in case there is any error
+        db.rollback()
+    return
+
+database_startup()
 noodknop()
