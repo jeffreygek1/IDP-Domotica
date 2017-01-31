@@ -6,6 +6,7 @@ import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
+pi = "raspberry pi 1"
 RED = 17
 GREEN = 18
 
@@ -74,9 +75,9 @@ def email():
     msg = MIMEMultipart()
     msg['From'] = fromaddr
     msg['To'] = toaddr
-    msg['Subject'] = "SUBJECT OF THE MAIL"
+    msg['Subject'] = "%s" % pi
 
-    body = "YOUR MESSAGE HERE"
+    body = "%s heeft de noodknop ingedrukt" % pi
     msg.attach(MIMEText(body, 'plain'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
