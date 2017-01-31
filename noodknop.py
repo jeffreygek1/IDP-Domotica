@@ -22,6 +22,7 @@ def noodknop():
         if GPIO.input(21) == True:
             print("noodknop ingedrukt!")
             camera_aan()
+
             database_noodknop()
         time.sleep(0.3)
 
