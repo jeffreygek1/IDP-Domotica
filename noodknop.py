@@ -2,6 +2,9 @@ import RPi.GPIO as GPIO
 import time
 import os
 import MySQLdb
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
 
 
 RED = 17
@@ -16,13 +19,15 @@ GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 db = MySQLdb.connect(host='idp-projectserver.ddns.net', user='raspberry1',
                               passwd='raspberry', db='domoDB')
 
+pi = "raspberry pi 1"
+
 
 def noodknop():
     while True:
         if GPIO.input(21) == True:
             print("noodknop ingedrukt!")
             camera_aan()
-
+            email()
             database_noodknop()
         time.sleep(0.3)
 
@@ -59,5 +64,22 @@ def database_startup():
         db.rollback()
     return
 
+def email():
+    fromaddr = "rpi1domotica@gmail.com"
+    toaddr = "jeffrey.gek@hotmail.com"
+    msg = MIMEMultipart()
+    msg['From'] = fromaddr
+    msg['To'] = toaddr
+    msg['Subject'] = "%s" % pi
+
+    body = "%s heeft de noodknop ingedrukt" % pi
+    msg.attach(MIMEText(body, 'plain'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(fromaddr, "Qazwsx1!")
+    text = msg.as_string()
+    server.sendmail(fromaddr, toaddr, text)
+    server.quit()
 database_startup()
 noodknop()
