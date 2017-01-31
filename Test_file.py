@@ -21,13 +21,13 @@ def knop_LED():
         if GPIO.input(24) == True:
             print("knop in gedrukt...")
             time.sleep(0.3)
-            print("Lamp gaat aan...")
+            print("Camera gaat uit...")
             LED()
 
         if GPIO.input(23) == True:
             print("knop in gedrukt...")
             time.sleep(0.3)
-            print("Lamp gaat aan...")
+            print("Camera gaat aan...")
             camera_aan()
         time.sleep(0.1)
 
@@ -48,6 +48,19 @@ def camera_aan():
     GPIO.output(GREEN, True)
     os.system("sudo service motion start")
     os.system("sudo motion")
+    return
+
+def database_noodknop():
+    cursor = db.cursor()
+    sql = "UPDATE EMPLOYEE SET AGE = AGE + 1 WHERE SEX = 'M'"
+    try:
+        # Execute the SQL command
+        cursor.execute(sql)
+        # Commit your changes in the database
+        db.commit()
+    except:
+        # Rollback in case there is any error
+        db.rollback()
     return
 
 os.system("sudo service motion start")
