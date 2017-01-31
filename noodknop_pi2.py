@@ -66,7 +66,7 @@ def database_startup():
 
 def email():
     fromaddr = "rpi1domotica@gmail.com"
-    toaddr = "jan.dekker@student.hu.nl"
+    toaddr = "jeffrey.gek@hotmail.com"
     msg = MIMEMultipart()
     msg['From'] = fromaddr
     msg['To'] = toaddr
