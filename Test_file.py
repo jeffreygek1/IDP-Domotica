@@ -14,7 +14,8 @@ GPIO.setup(25, GPIO.OUT)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
+global counter
+counter = 0
 
 def knop_LED():
     while True:
@@ -35,11 +36,17 @@ def knop_LED():
             licht()
         time.sleep(0.1)
 
+
+
 def licht():
-    if GPIO.output(25, True):
+    global counter
+    if counter == 0:
         GPIO.output(25, False)
-    if GPIO.output(25, False):
+        counter += 1
+        return
+    if counter == 1:
         GPIO.output(25, True)
+        counter = 0
 
 def LED():
     GPIO.output(GREEN, False)
