@@ -28,6 +28,7 @@ def noodknop():
             print("noodknop ingedrukt!")
             camera_aan()
             email()
+            os.system("java -jar TestClient.jar")
             database_noodknop()
         time.sleep(0.3)
 
