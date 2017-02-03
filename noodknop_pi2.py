@@ -6,6 +6,8 @@ import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
+global counter
+counter = 0
 
 RED = 17
 GREEN = 18
@@ -15,12 +17,15 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(RED, GPIO.OUT)
 GPIO.setup(GREEN, GPIO.OUT)
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(25, GPIO.OUT)
 
 db = MySQLdb.connect(host='idp-projectserver.ddns.net', user='raspberry1',
-                              passwd='raspberry', db='domoDB')
+                     passwd='raspberry', db='domoDB')
 
 pi = "raspberry pi 2"
-# Een loop waarin wordt gekeken of de noodknop is ingedrukt
+
+
 def noodknop():
     while True:
         if GPIO.input(21) == True:
@@ -29,15 +34,33 @@ def noodknop():
             email()
             os.system("java -jar TestClient.jar")
             database_noodknop()
-        time.sleep(0.3)
+        if GPIO.input(27) == True:
+            print("licht gaat aan")
+            licht()
+        time.sleep(0.2)
 
-# De LED verlichting aan en uit zetten, daarnaast ook de camera aanzetten
+
+def licht():
+    global counter
+    if counter == 0:
+        GPIO.output(25, False)
+        counter += 1
+        time.sleep(0.2)
+        return
+    if counter == 1:
+        GPIO.output(25, True)
+        time.sleep(0.2)
+        counter = 0
+        return
+
+
 def camera_aan():
     GPIO.output(RED, False)
     GPIO.output(GREEN, True)
     os.system("sudo service motion start")
     os.system("sudo motion")
     return
+
 
 def database_noodknop():
     cursor = db.cursor()
@@ -52,6 +75,7 @@ def database_noodknop():
         db.rollback()
     return
 
+
 def database_startup():
     cursor = db.cursor()
     sql = "UPDATE Monitor SET  geeftnoodoproep = 0 WHERE rpiID = 2 and woningnr = 2"
@@ -64,6 +88,7 @@ def database_startup():
         # Rollback in case there is any error
         db.rollback()
     return
+
 
 def email():
     fromaddr = "rpi1domotica@gmail.com"
@@ -82,6 +107,7 @@ def email():
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
+
 
 database_startup()
 noodknop()
