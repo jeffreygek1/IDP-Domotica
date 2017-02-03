@@ -33,14 +33,14 @@ def noodknop():
             camera_aan()
             email()
             try:
+                database_noodknop()
+            except:
+                print("Database offline")
+            try:
                 os.system("java -jar RPI_Client_2_v120.jar")
             except:
                 print("Server java offline")
 
-            try:
-                database_noodknop()
-            except:
-                print("Database offilen")
         if GPIO.input(27) == True:
             licht()
         time.sleep(0.2)
