@@ -32,8 +32,15 @@ def noodknop():
             print("noodknop ingedrukt!")
             camera_aan()
             email()
-            os.system("java -jar TestClient.jar")
-            database_noodknop()
+            try:
+                os.system("java -jar TestClient.jar")
+            except:
+                print("Server java offline")
+
+            try:
+                database_noodknop()
+            except:
+                print("Database offilen")
         if GPIO.input(27) == True:
             licht()
         time.sleep(0.2)
@@ -106,6 +113,6 @@ def email():
 try:
     database_startup()
 except:
-    print("server offline")
+    print("Database offline")
 
 noodknop()
