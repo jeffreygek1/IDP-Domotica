@@ -103,5 +103,9 @@ def email():
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
-database_startup()
+try:
+    database_startup()
+except:
+    print("server offline")
+
 noodknop()

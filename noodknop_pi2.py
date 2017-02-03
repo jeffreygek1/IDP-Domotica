@@ -109,6 +109,9 @@ def email():
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
 
+try:
+    database_startup()
+except:
+    print("server offline")
 
-database_startup()
 noodknop()
