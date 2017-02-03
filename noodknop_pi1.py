@@ -33,7 +33,7 @@ def noodknop():
             camera_aan()
             email()
             try:
-                os.system("java -jar TestClient.jar")
+                os.system("java -jar RPI_Client_1_v120.jar")
             except:
                 print("Server java offline")
 
