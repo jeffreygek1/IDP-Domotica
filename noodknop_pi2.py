@@ -35,22 +35,23 @@ def noodknop():
             os.system("java -jar TestClient.jar")
             database_noodknop()
         if GPIO.input(27) == True:
-            print("licht gaat aan")
             licht()
         time.sleep(0.2)
 
 
 def licht():
     global counter
-    if counter == 0:
+    if counter == 1:
         GPIO.output(25, False)
         counter += 1
+        print("licht gaat uit")
         time.sleep(0.2)
         return
-    if counter == 1:
+    if counter == 0:
         GPIO.output(25, True)
-        time.sleep(0.2)
+        print("licht gaat aan")
         counter = 0
+        time.sleep(0.2)
         return
 
 
