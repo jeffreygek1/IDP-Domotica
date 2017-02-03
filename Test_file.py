@@ -43,11 +43,13 @@ def licht():
     if counter == 0:
         GPIO.output(25, False)
         counter += 1
+        time.sleep(0.2)
         return
     if counter == 1:
         GPIO.output(25, True)
+        time.sleep(0.2)
         counter = 0
-
+        return
 def LED():
     GPIO.output(GREEN, False)
     GPIO.output(RED, True)
