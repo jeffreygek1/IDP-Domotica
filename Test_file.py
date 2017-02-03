@@ -9,7 +9,7 @@ GREEN = 18
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(RED, GPIO.OUT)
-GPIO.setup(GREEN, GPIO.OUT
+GPIO.setup(GREEN, GPIO.OUT)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
