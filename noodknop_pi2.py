@@ -20,8 +20,7 @@ db = MySQLdb.connect(host='idp-projectserver.ddns.net', user='raspberry1',
                               passwd='raspberry', db='domoDB')
 
 pi = "raspberry pi 2"
-
-
+# Een loop waarin wordt gekeken of de noodknop is ingedrukt
 def noodknop():
     while True:
         if GPIO.input(21) == True:
@@ -31,6 +30,7 @@ def noodknop():
             database_noodknop()
         time.sleep(0.3)
 
+# De LED verlichting aan en uit zetten, daarnaast ook de camera aanzetten
 def camera_aan():
     GPIO.output(RED, False)
     GPIO.output(GREEN, True)
@@ -81,5 +81,6 @@ def email():
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
+
 database_startup()
 noodknop()

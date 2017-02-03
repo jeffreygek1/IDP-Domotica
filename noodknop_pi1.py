@@ -62,7 +62,7 @@ def database_startup():
     except:
         # Rollback in case there is any error
         db.rollback()
-    return
+    returngi
 
 def email():
     fromaddr = "rpi1domotica@gmail.com"
