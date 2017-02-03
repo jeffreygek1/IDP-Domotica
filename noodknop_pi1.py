@@ -42,14 +42,14 @@ def licht():
     global counter
     if counter == 1:
         GPIO.output(25, False)
-        counter += 1
+        counter = 0
         print("licht gaat uit")
         time.sleep(0.2)
         return
     if counter == 0:
         GPIO.output(25, True)
         print("licht gaat aan")
-        counter = 0
+        counter += 1
         time.sleep(0.2)
         return
 
